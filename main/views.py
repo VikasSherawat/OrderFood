@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from .Customer.views import *
+from .ShopOwner.views import *
 # Create your views here.
 from django.http import HttpResponse
 

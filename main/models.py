@@ -14,6 +14,7 @@ class Order(models.Model):
     time = models.DateTimeField()
     isServed = models.BooleanField()
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    bill = models.FloatField()
 
 
 class ShopOwner(User):
