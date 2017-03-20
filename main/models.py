@@ -58,6 +58,7 @@ class FoodItem(models.Model):
     price = models.FloatField()
     orders = models.ManyToManyField(Order)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    name = models.CharField(max_length=20)
 
 
 class Review(models.Model):
