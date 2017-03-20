@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+List of all the shops:
+{% if shop_list %}
+    <ul>
+        {% for shop in shop_list %}
+            <li><a href="{% url 'shopowner:shop' shop.id %}">{{ shop.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No Shop are available.</p>
+{% endif %}
+
+</body>
+</html>

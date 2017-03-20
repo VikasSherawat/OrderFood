@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{ shop.name }}
+<br/>
+Possible meal:
+<ul>
+    {% for fooditem in shop.fooditem_set.all %}
+        <li>{{fooditem.name}}</li>
+    {% endfor %}
+</ul>
+<br/>
+Orders:
+<ul>
+    {% for fooditem in shop.fooditem_set.all %}
+        {% for order in fooditem.orders.all %}
+            <li>order</li>
+        {% endfor %}
+    {% endfor %}
+</ul>
+
+</body>
+</html>
