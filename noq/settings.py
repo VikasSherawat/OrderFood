@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'noq.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,6 +111,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+
+#Customer User Model
+AUTH_USER_MODEL = 'main.User'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
@@ -118,5 +124,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static", "static_root")
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static", "main"),
+    os.path.join(BASE_DIR, "static"),
 ]
+
+LOGIN_REDIRECT_URL = '../'
+
+# Crispy Forms
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
