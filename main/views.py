@@ -1,8 +1,28 @@
-from django.shortcuts import render
-from .Customer.views import *
-from .ShopOwner.views import *
-# Create your views here.
-from django.http import HttpResponse
+from django.shortcuts import render,redirect
+from django.urls import reverse
+from django.http import HttpResponse,HttpResponseRedirect
+from django.template.context_processors import csrf
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the index page.")
+from .admin import UserCreationForm
+
+def home(request):
+    return render(request, 'main/home.html', {})
+
+
+def success(request):
+    return render(request, 'main/success.html', dict())
+
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success')
+
+    context = {}
+    context.update(csrf(request))
+    context['form'] = UserCreationForm()
+
+    return render(request, 'registration/register.html', context)
