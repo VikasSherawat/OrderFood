@@ -1,4 +1,22 @@
 {% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+{% block homeheader %}
+    <div class="bigpic">
+    </div>
+{% endblock %}
 {% block content %}
-<h1>Customer Home Page</h1>
+    <div class="row rowclass">
+    <div class="col-lg-10 col-lg-offset-1">
+        <div id="custom-search-input">
+            <div class="input-group col-md-12">
+                <input type="text" class="form-control input-lg" placeholder="Search Shops"/>
+                <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                </span>
+            </div>
+        </div>
+        </div>
+    </div>
 {% endblock %}
