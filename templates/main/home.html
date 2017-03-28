@@ -1,25 +1,36 @@
 {% extends 'main/base.html' %}
 {% load crispy_forms_tags %}
 {% block style %}
+    #myjumbo{
+    background-color:white;
+    height: 300px;
+    }
 
+    #txt_search{
+    border-style:solid;
+    }
 {% endblock %}
+
 {% block homeheader %}
-    <div class="bigpic">
+    <div class="jumbotron" id="myjumbo">
+        <div class="container">
+            <div class="row rowclass">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div id="custom-search-input">
+                        <div id="div_search" class="input-group col-md-12">
+                            <input id="txt_search" type="text" class="form-control input-lg"
+                                   placeholder="Search Shops"/>
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 {% block content %}
-    <div class="row rowclass">
-    <div class="col-lg-10 col-lg-offset-1">
-        <div id="custom-search-input">
-            <div class="input-group col-md-12">
-                <input type="text" class="form-control input-lg" placeholder="Search Shops"/>
-                <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                </span>
-            </div>
-        </div>
-        </div>
-    </div>
+
 {% endblock %}
