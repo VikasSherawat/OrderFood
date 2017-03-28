@@ -16,7 +16,8 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_shop_owner = models.BooleanField(default=False, verbose_name='Are you a shop Owner?', blank=True)
-
+    firstName = models.CharField(max_length=100, blank = True, null= True,verbose_name='First Name')
+    lastName = models.CharField(max_length=100, blank = True, null= True, verbose_name='Last Name')
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
@@ -24,11 +25,11 @@ class User(AbstractBaseUser):
 
     def get_full_name(self):
         # The user is identified by their email address
-        return self.email
+        return self.firstName+self.lastName
 
     def get_short_name(self):
         # The user is identified by their email address
-        return self.email
+        return self.firstName
 
     def __str__(self):  # __unicode__ on Python 2
         return self.email

@@ -21,6 +21,7 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'boots/css/navbar-static-top.css' %}" rel="stylesheet">
     <style>
+
         {% block style %}
 
         {% endblock %}
@@ -32,15 +33,12 @@
 
 {% include 'main/navbar.html' %}
 
-{% comment %}<div class="container">
-       <img src="https://c3.staticflickr.com/6/5558/29910867802_df7990d6d1_b.jpg" class="img-responsive" alt="Responsive image">
-</div>{% endcomment %}
 
 {% block homeheader %}
 
 {% endblock %}
 <div class="container">
-      <!--1st Large Banner Image -->
+    <!--1st Large Banner Image -->
 
     <!-- Main component for a primary marketing message or call to action -->
     {% block content %}

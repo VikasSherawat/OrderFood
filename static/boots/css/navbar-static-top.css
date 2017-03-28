@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 .navbar-static-top {
   margin-bottom: 0px;
 }
@@ -9,7 +10,7 @@ postion:relative;
 width: 100%;
 height: 350px;
 display: block;
-background: url("../../main/images/banner.jpeg");
+/*background: url("../../main/images/banner.jpeg");*/
 }
 
 .rowclass{
