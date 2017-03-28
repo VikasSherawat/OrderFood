@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^(?P<shop_id>[0-9]+)/$', views.shop, name='shop'),
     # ex: /noq/shopowner/newshop/
     url(r'^newshop/$', views.newshop, name='newshop'),
+    url(r'^newmeal/(?P<shop_id>[0-9]+)/$', views.newmeal, name='newmeal'),
 ]

@@ -5,9 +5,10 @@
     Possible meal:
     <ul>
         {% for fooditem in shop.fooditem_set.all %}
-            <li>{{ fooditem.name }}</li>
+            <li>{{ fooditem.name }}, {{ fooditem.price }} SGD</li>
         {% endfor %}
     </ul>
+    <a class="btn btn-default" href="{% url 'shopowner:newmeal' shop.id %}" role="button">Add a new meal</a>
     <br/>
     Orders:
     <ul>

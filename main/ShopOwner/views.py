@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from ..models import Shop, SubscriptionType, Location
+from ..models import Shop, SubscriptionType, Location, FoodItem
 from django import forms
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -58,6 +58,23 @@ class NewShopForm(forms.Form):
     )
 
 
+class NewMealForm(forms.Form):
+    name = forms.CharField()
+    price = forms.FloatField()
+
+    # Uni-form
+    helper = FormHelper()
+    helper.form_class = 'form-horizontal'
+    helper.layout = Layout(
+        Field('name', css_class='input-xlarge'),
+        'price',
+        FormActions(
+            Submit('save_changes', 'Save changes', css_class="btn-primary"),
+            Submit('cancel', 'Cancel'),
+        )
+    )
+
+
 def index(request):
     shop_list = Shop.objects.order_by('name')
     return render(request, 'main/index_shopowner.html', {'shop_list': shop_list})
@@ -66,6 +83,20 @@ def index(request):
 def shop(request, shop_id):
     current_shop = get_object_or_404(Shop, pk=shop_id)
     return render(request, 'main/shop.html', {'shop': current_shop})
+
+
+def newmeal(request, shop_id):
+    current_shop = get_object_or_404(Shop, pk=shop_id)
+    form = NewMealForm(request.POST or None)
+    if form.is_valid():
+        # Create the new meal
+        new_meal = FoodItem(price=request.POST['price'], name=request.POST['name'],
+                            shop_id=shop_id)
+        new_meal.save()
+        # return to the shop page
+        return HttpResponseRedirect(reverse('shopowner:shop', args=(shop_id)))
+
+    return render(request, 'main/newmeal.html', {'form': form})
 
 
 def newshop(request):
