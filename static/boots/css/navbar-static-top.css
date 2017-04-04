@@ -35,7 +35,10 @@ staticfiles
 }
 
 .rowclass {
-    margin-top: 10px;
+    text-align: center;
+    margin-top: 50px;
+
+
 }
 
 #custom-search-input {
