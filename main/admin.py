@@ -6,13 +6,14 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from .models import User
 
+
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
-    owner = forms.BooleanField(label = 'Are you a Shop Owner?', widget= forms.CheckboxInput, required=False)
-    firstName = forms.CharField(label = 'First Name', max_length=100, widget=forms.TextInput, required=False)
+    owner = forms.BooleanField(label='Are you a Shop Owner?', widget=forms.CheckboxInput, required=False)
+    firstName = forms.CharField(label='First Name', max_length=100, widget=forms.TextInput, required=False)
     lastName = forms.CharField(label='Last Name', max_length=100, widget=forms.TextInput, required=False)
 
     class Meta:
@@ -48,7 +49,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'is_active', 'is_admin','firstName','lastName')
+        fields = ('email', 'password', 'is_active', 'is_admin', 'firstName', 'lastName')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -65,11 +66,11 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'is_shop_owner', 'is_admin','firstName','lastName')
+    list_display = ('email', 'is_shop_owner', 'is_admin', 'firstName', 'lastName')
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('is_shop_owner','firstName','lastName')}),
+        ('Personal info', {'fields': ('is_shop_owner', 'firstName', 'lastName')}),
         ('Permissions', {'fields': ('is_admin',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -77,12 +78,13 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'is_shop_owner', 'password1', 'password2','firstName','lastName')}
-        ),
+            'fields': ('email', 'is_shop_owner', 'password1', 'password2', 'firstName', 'lastName')}
+         ),
     )
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ()
+
 
 # Now register the new UserAdmin...
 admin.site.register(User, UserAdmin)

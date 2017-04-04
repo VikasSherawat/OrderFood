@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template.context_processors import csrf
 
 from .admin import UserCreationForm
+
 
 def home(request):
     return render(request, 'main/home.html', {})
@@ -11,7 +12,6 @@ def home(request):
 
 def success(request):
     return render(request, 'main/success.html', dict())
-
 
 
 def register(request):

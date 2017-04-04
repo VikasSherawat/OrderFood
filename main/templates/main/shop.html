@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{ shop.name }}
-<br/>
-Possible meal:
-<ul>
-    {% for fooditem in shop.fooditem_set.all %}
-        <li>{{fooditem.name}}</li>
-    {% endfor %}
-</ul>
-<br/>
-Orders:
-<ul>
-    {% for fooditem in shop.fooditem_set.all %}
-        {% for order in fooditem.orders.all %}
-            <li>order</li>
+{% extends 'main/base.html' %}
+{% block content %}
+    {{ shop.name }}
+    <br/>
+    Possible meal:
+    <ul>
+        {% for fooditem in shop.fooditem_set.all %}
+            <li>{{ fooditem.name }}, {{ fooditem.price }} SGD</li>
         {% endfor %}
-    {% endfor %}
-</ul>
+    </ul>
+    <a class="btn btn-default" href="{% url 'shopowner:newmeal' shop.id %}" role="button">Add a new meal</a>
+    <br/>
+    Orders:
+    <ul>
+        {% for fooditem in shop.fooditem_set.all %}
+            {% for order in fooditem.orders.all %}
+                <li>{{order.customer.user.email }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
 
-</body>
-</html>
+{% endblock %}

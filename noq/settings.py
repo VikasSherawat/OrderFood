@@ -111,9 +111,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
-#Customer User Model
+# Customer User Model
 AUTH_USER_MODEL = 'main.User'
 
 # Static files (CSS, JavaScript, Images)
