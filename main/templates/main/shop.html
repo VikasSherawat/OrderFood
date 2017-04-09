@@ -1,22 +1,63 @@
 {% extends 'main/base.html' %}
 {% block content %}
-    {{ shop.name }}
-    <br/>
-    Possible meal:
-    <ul>
-        {% for fooditem in shop.fooditem_set.all %}
-            <li>{{ fooditem.name }}, {{ fooditem.price }} SGD</li>
+    <h1>{{ shop.name }}</h1>
+
+    <h2>Orders</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>food items</th>
+            <th>bill</th>
+            <th>is ready</th>
+        </tr>
+        {#        {% for fooditem in shop.fooditem_set.all %}#}
+        {#            {% for order in fooditem.orders.all %}#}
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.customer.user.firstName }} {{ order.customer.user.lastName }}</td>
+                <td>{{ order.customer.user.email }}</td>
+                <td>
+                    {% for f in order.fooditem_set.all %}
+                        <a class="btn btn-primary btn-sm">{{ f.name }}</a>
+                    {% endfor %}
+                </td>
+                <td>{{ order.bill }}</td>
+                <td><a class="btn btn-success" href="{% url 'shopowner:food_ready' shop_id=shop.id food_id=order.id %}"
+                       role="button"><span
+                        class="glyphicon glyphicon-ok"
+                        aria-hidden="true"></span></a></td>
+            </tr>
+            {#            {% endfor %}#}
         {% endfor %}
-    </ul>
+    </table>
+
+    <h2>Meals</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Price (SGD)</th>
+            <th>Status</th>
+            <th>Switch status</th>
+        </tr>
+        {% for fooditem in shop.fooditem_set.all %}
+            <tr {% if not fooditem.is_available %} class="danger" {% endif %}>
+
+                <td>{{ fooditem.name }}</td>
+                <td>{{ fooditem.price }} </td>
+                <td>{% if fooditem.is_available %} Available {% else %} Not available {% endif %}</td>
+                <td><a class="btn btn-success"
+                       href="{% url 'shopowner:food_available' shop_id=shop.id food_id=fooditem.id %}"
+                       role="button"><span
+                        class="glyphicon glyphicon-resize-horizontal"
+                        aria-hidden="true"></span></a></td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+
     <a class="btn btn-default" href="{% url 'shopowner:newmeal' shop.id %}" role="button">Add a new meal</a>
-    <br/>
-    Orders:
-    <ul>
-        {% for fooditem in shop.fooditem_set.all %}
-            {% for order in fooditem.orders.all %}
-                <li>{{order.customer.user.email }}</li>
-            {% endfor %}
-        {% endfor %}
-    </ul>
+
 
 {% endblock %}

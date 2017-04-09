@@ -15,8 +15,8 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_shop_owner = models.BooleanField(default=False, verbose_name='Are you a shop Owner?', blank=True)
-    firstName = models.CharField(max_length=100, blank = True, null= True,verbose_name='First Name')
-    lastName = models.CharField(max_length=100, blank = True, null= True, verbose_name='Last Name')
+    firstName = models.CharField(max_length=100, blank=True, null=True, verbose_name='First Name')
+    lastName = models.CharField(max_length=100, blank=True, null=True, verbose_name='Last Name')
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
@@ -24,7 +24,7 @@ class User(AbstractBaseUser):
 
     def get_full_name(self):
         # The user is identified by their email address
-        return self.firstName+self.lastName
+        return self.firstName + self.lastName
 
     def get_short_name(self):
         # The user is identified by their email address
@@ -70,8 +70,8 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 
 class Order(models.Model):
-    order_date = models.DateTimeField()
-    isServed = models.BooleanField()
+    order_date = models.DateTimeField(null=True)
+    isServed = models.BooleanField(default=False)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     bill = models.FloatField()
 
@@ -89,24 +89,19 @@ class Subscription(models.Model):
     subscription_type = models.ForeignKey(SubscriptionType, on_delete=models.CASCADE)
 
 
-class Location(models.Model):
-    area = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-
-
 class Shop(models.Model):
     name = models.CharField(max_length=20)
     shop_owner = models.ForeignKey(ShopOwner, on_delete=models.CASCADE)
     subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    postal_code = models.IntegerField()
+    address = models.CharField(max_length=200, null=True, blank=True)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
 
 
 class Category(models.Model):
     description = models.CharField(max_length=200)
     name = models.CharField(max_length=20)
-    shops = models.ManyToManyField(Shop)
 
 
 class FoodItem(models.Model):
@@ -114,6 +109,8 @@ class FoodItem(models.Model):
     orders = models.ManyToManyField(Order)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    is_available = models.BooleanField(default=False)
 
 
 class Review(models.Model):
