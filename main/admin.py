@@ -91,6 +91,7 @@ admin.site.register(User, UserAdmin)
 admin.site.register(SubscriptionType)
 admin.site.register(Subscription)
 admin.site.register(Category)
+
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)
