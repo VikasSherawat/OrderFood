@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from .models import User,Subscription,SubscriptionType,Category
+from .models import User,Subscription,SubscriptionType,Category,Shop
 
 
 class UserCreationForm(forms.ModelForm):
@@ -91,6 +91,7 @@ admin.site.register(User, UserAdmin)
 admin.site.register(SubscriptionType)
 admin.site.register(Subscription)
 admin.site.register(Category)
+admin.site.register(Shop)
 
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.

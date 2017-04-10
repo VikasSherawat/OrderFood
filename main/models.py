@@ -90,6 +90,7 @@ class Subscription(models.Model):
     starting_date = models.DateTimeField()
     end_date = models.DateTimeField()
     subscription_type = models.ForeignKey(SubscriptionType, on_delete=models.CASCADE)
+
     def __str__(self):  # __unicode__ on Python 2
         return self.subscription_type.description
 
@@ -102,6 +103,11 @@ class Shop(models.Model):
     address = models.CharField(max_length=200, null=True, blank=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
+    image_name = models.CharField(max_length=50, null=True)
+    cusine_type = models.CharField(max_length=50, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Category(models.Model):

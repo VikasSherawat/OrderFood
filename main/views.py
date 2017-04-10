@@ -3,13 +3,14 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.context_processors import csrf
 from .forms import UpdateProfile
+from .models import Shop
 
 from .admin import UserCreationForm
 
 
 def home(request):
-    return render(request, 'main/home.html', {})
-
+    shops = Shop.objects.all()
+    return render(request, 'main/home.html', {'shops': shops})
 
 def success(request):
     return render(request, 'main/success.html', dict())
