@@ -82,11 +82,16 @@ class SubscriptionType(models.Model):
     price = models.FloatField()
     duration = models.IntegerField()
 
+    def __str__(self):  # __unicode__ on Python 2
+        return self.description
+
 
 class Subscription(models.Model):
     starting_date = models.DateTimeField()
     end_date = models.DateTimeField()
     subscription_type = models.ForeignKey(SubscriptionType, on_delete=models.CASCADE)
+    def __str__(self):  # __unicode__ on Python 2
+        return self.subscription_type.description
 
 
 class Shop(models.Model):
@@ -102,6 +107,9 @@ class Shop(models.Model):
 class Category(models.Model):
     description = models.CharField(max_length=200)
     name = models.CharField(max_length=20)
+
+    def __str__(self):  # __unicode__ on Python 2
+        return self.name
 
 
 class FoodItem(models.Model):
