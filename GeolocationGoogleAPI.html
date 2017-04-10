@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      //Display the lat lng of the current location.
+      //Compute the distance between the point of interest to the current location.
+      //Sort the locatioin based on the distance.
+      
+      function GoogleMapAPIfun() {
+      // get the current location and display as lat and lng.
+      if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+      };
+
+      document.getElementById("pos").innerHTML=position.coords.latitude+", "+position.coords.longitude;
+
+      //Get the point of interest lat and lng. Use geolocation1 as the dummy testing point. Use geolocation2 for the database case to retrive the location points.
+      var geolocation1 = [
+      {no:"1",lat:"1.3351148137016341",lng:"103.89028129022621"},
+      {no:"2",lat:"1.3351147137016328",lng:"103.89028129022631"},
+      {no:"3",lat:"1.3351146137016317",lng:"103.89028129022641"},
+      {no:"4",lat:"1.3351145137016350",lng:"103.89028129022651"},
+      {no:"5",lat:"1.3351141137016310",lng:"103.89028129022661"},
+      {no:"6",lat:"1.3351140137016340",lng:"103.89028129022671"}
+      ];
+      var geolocation2 = [];
+      var distance = [];
+
+      //Compute the distance between current location and point of interests
+      for (i = 0; i < geolocation1.length; i++) {
+		      srcLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		      dstLocation = new google.maps.LatLng(geolocation1[i].lat, geolocation1[i].lng);
+
+		      var dist = google.maps.geometry.spherical.computeDistanceBetween(srcLocation, dstLocation);
+
+		      distance.push({no:geolocation1[i].no,dis:dist});
+		      }
+		      document.getElementById("distance").innerHTML=JSON.stringify(distance);
+
+		      distance.sort(function(a,b) {return (a.dis > b.dis) ?1:((b.dis>a.dis)?-1:0);});
+		      document.getElementById("distancesort").innerHTML=JSON.stringify(distance);
+		      
+      }, function() {
+//    may be need to put a function here. for exception handling. Assume no exception now.
+      });
+      } else {
+//    may be need to put a function here. for exception handling. Assume no exception now.
+		      }
+		      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3VQzOg4WzjmDwFT8vP4ptCYbj0edQvPw&libraries=geometry&callback=GoogleMapAPIfun">
+    </script>
+    <div id="pos"></div>
+    <div id="distance"></div>
+    <div id="distancesort"></div>
+  </body>
+</html>
