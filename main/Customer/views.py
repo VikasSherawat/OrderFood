@@ -17,12 +17,11 @@ def buy_fooditem(request, fooditem_id):
         return redirect('home')
     else:
         fooditem = get_object_or_404(FoodItem, pk=fooditem_id)
-        price = fooditem.price
         current_user = get_object_or_404(Customer, user_id=request.user.id)
-        fooditem.shop.shop_owner.credit += price
+
+        fooditem.shop.shop_owner.credit += fooditem.price
         fooditem.shop.shop_owner.save()
-        current_user.balance -= price
+
+        current_user.balance -= fooditem.price
         current_user.save()
-        print(current_user.balance)
-        print(fooditem.shop.shop_owner.credit)
-        return render(request, "main/thankyou.html")
+        return render(request, "main/order_confirmation.html")
