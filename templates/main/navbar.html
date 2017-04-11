@@ -1,0 +1,34 @@
+<!-- Static navbar -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'home' %}">NoQ</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_authenticated %}
+                    <li class="active"><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a  href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+            {% if not request.user.is_authenticated and not "/login" in request.get_full_path %}
+                <div id="navbar" class="navbar-collapse collapse">
+                    <form class="navbar-form navbar-right" method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="form-group left-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <input type="text" placeholder="Email" name="username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class='form-control' name='password' placeholder='Password'/>
+                        </div>
+                        <button class="btn btn-primary">Sign in</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
