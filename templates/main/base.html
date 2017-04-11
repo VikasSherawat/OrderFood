@@ -43,6 +43,7 @@
     {% for message in messages %}
     <div class="alert alert-warning alert-dismissable">
         {{ message }}
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     </div>
     {% endfor %}
 {% endif %}
