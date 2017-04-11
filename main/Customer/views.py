@@ -27,4 +27,4 @@ def buy_fooditem(request, fooditem_id):
 
         current_user.balance -= fooditem.price
         current_user.save()
-        return render(request, "main/order_confirmation.html")
+        return render(request, "main/order_confirmation.html", {'fooditem': fooditem, 'user': current_user})
