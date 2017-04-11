@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+import datetime
+
+from django.shortcuts import render, redirect,get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.context_processors import csrf
 from .forms import UpdateProfile
-from .models import Shop
+from .models import Shop,Customer,ShopOwner,User
 
 from .admin import UserCreationForm
 
@@ -20,18 +22,15 @@ def profile(request):
     if not request.user.is_authenticated:
         return redirect('home')
     else:
-        context = dict()
-        if request.method == 'POST':
-            form = UpdateProfile(request.POST, instance=request.user)
-            if form.is_valid():
-                print('Form is valid')
-                form.save()
-                return redirect('success')
-            else:
-                print('Form is not valid')
-                return redirect('home')
+        context = {}
+        print(request.user.firstName)
+        context['user'] = request.user
+        if not request.user.is_shop_owner:
+            customer = get_object_or_404(Customer, user_id=request.user.id)
+            context['balance'] = customer.balance
         else:
-            context['form'] = UpdateProfile(instance=request.user)
+            owner = get_object_or_404(ShopOwner, user_id=request.user.id)
+            context['balance'] = owner.credit
         return render(request, 'main/update.html', context)
 
 
