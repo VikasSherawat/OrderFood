@@ -1,0 +1,44 @@
+
+div.article-page-preview-title {
+    margin-top: 2%;
+    padding: 0;
+}
+
+.idv-shop-row{
+    box-shadow: 0px 1px 2px gray;
+    height: 115px;
+    margin: 16px 0px 0px 0px;
+    text-align: justify;
+    padding-top: 17px;
+}
+
+.idv-shop-row:hover {
+    background : #fbfbfb;
+}
+
+.shop-name {
+    font-size: 23px;
+    font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif;
+    font-weight: 600;
+
+}
+
+.shop-cusine {
+    color: rgba(0,0,0,.67);
+    font-size: 16px;
+    font-style: italic;
+}
+
+
+.shop-img {
+    border: 1px solid rgba(0, 0, 0, 0.11);
+    border-radius: 4px;
+
+}
+
+.right-icon {
+    font-size: 1.6em;
+}
+.right-icon-section {
+    margin: 27px 0px 0px 0px;
+}
