@@ -39,6 +39,14 @@
 
 {% endblock %}
 
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissable">
+        {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
+
 <div class="container">
     <!--1st Large Banner Image -->
 

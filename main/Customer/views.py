@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from django.contrib import messages
+
 # Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
 from ..models import Shop, User, Customer, FoodItem
@@ -14,6 +16,7 @@ def fooditems(request, shop_id):
 def buy_fooditem(request, fooditem_id):
     if not request.user.is_authenticated:
         print("user not authenticated")
+        messages.add_message(request, messages.INFO, 'You must be logged in to place an order')
         return redirect('home')
     else:
         fooditem = get_object_or_404(FoodItem, pk=fooditem_id)
