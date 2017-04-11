@@ -11,13 +11,46 @@
     #myjumbo{
     background-color:white;
     height:300px;
-    background-image:url("../../static/main/images/fruit.jpg");
+    margin-top:-340px;
+    <!--background-image:url("../../static/main/images/fruit.jpg");-->
 
     }
 
 {% endblock %}
 
 {% block homeheader %}
+    <div class="banner-slide-container">
+        <div id="banner-slide">
+
+            <!-- start Basic Jquery Slider -->
+            <ul class="bjqs ul-banner" style="padding: 0;">
+                <li class = "li-banner-1">
+                    <div class="banner banner-1">
+                        <div class="banner-img">
+                            <img src="../../static/main/images/slider_1.jpg" title="">
+                        </div>
+                    </div>
+
+                </li>
+                <li class = "li-banner-2">
+                    <div class="banner banner-2">
+                        <div class="banner-img">
+                            <img src="../../static/main/images/slider_2.jpg" title="">
+                        </div>
+                    </div>
+
+                </li>
+                <li class = "li-banner-3">
+                    <div class="banner banner-3">
+                        <div class="banner-img">
+                            <img src="../../static/main/images/slider_3.jpg" title="">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
     <div class="jumbotron" id="myjumbo">
         <div class="container">
             <div class="row rowclass">
@@ -64,42 +97,5 @@
     </div>
 {% endfor %}
 
-
-<!--
-<div class="col-md-12 article-page-preview-rows">
-    <div class="col-md-1"></div>
-    <div class="col-md-10 article-02-preview article-preview" id="article-02-preview">
-        <div class="col-md-2"></div>
-        <div class="col-md-10">
-            <p>
-                <span class="article-02-preview-title article-preview-title">
-                Punjabi Tadka <br>
-                </span>
-                <span class="preview-subtitle italics-text">Everyone' favorite north Indian food <br></span>
-                <span class="preview-text">
-                </span>
-            </p>
-        </div>
-    </div>
-    <div class="col-md-1"></div>
-</div>
-<div class="col-md-12 article-page-preview-rows">
-    <div class="col-md-1"></div>
-    <div class="col-md-10 article-03-preview article-preview" id="article-03-preview">
-        <div class="col-md-2"></div>
-        <div class="col-md-10">
-            <p>
-                <span class="article-03-preview-title article-preview-title">
-                Big Bern's <br>
-                </span>
-                <span class="preview-subtitle italics-text">Best American Grilled food you can get <br></span>
-                <span class="preview-text">
-                </span>
-            </p>
-        </div>
-    </div>
-    <div class="col-md-1"></div>
-</div>
--->
 
 {% endblock %}

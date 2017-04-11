@@ -42,3 +42,72 @@ div.article-page-preview-title {
 .right-icon-section {
     margin: 27px 0px 0px 0px;
 }
+
+
+
+
+/************************************************************************/
+#banner-fade,
+#banner-slide{
+	margin-bottom: 60px;
+}
+
+ul.bjqs-controls.v-centered li a{
+	display:block;
+	padding:10px;
+	background:#fff;
+	color:#000;
+	text-decoration: none;
+}
+
+ul.bjqs-controls.v-centered li a:hover{
+	background:#000;
+	color:#fff;
+}
+
+ol.bjqs-markers li a{
+	padding:5px 10px;
+	background:#000;
+	color:#fff;
+	margin:5px;
+	text-decoration: none;
+}
+
+ol.bjqs-markers li.active-marker a,
+ol.bjqs-markers li a:hover{
+	background: #999;
+}
+
+p.bjqs-caption{
+	background: rgba(255,255,255,0.5);
+}
+
+.ul-banner {
+    height: 320px;
+    display: block;
+}
+
+.bjqs-slide {
+    height: 320px;
+    width: 100%;
+    display: inline-flex;
+}
+
+ol.bjqs-markers li a {
+    display: none;
+}
+
+.banner {
+    display: inline-flex;
+    text-align: -webkit-center;
+}
+
+.banner>.banner-img {
+    width : 35%;
+}
+
+
+ul.bjqs-controls.v-centered li.bjqs-prev a,
+ul.bjqs-controls.v-centered li.bjqs-next a {
+    opacity : 0.7;
+}
