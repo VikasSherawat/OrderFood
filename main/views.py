@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.context_processors import csrf
 from .forms import UpdateProfile
-from .models import Shop,Customer,ShopOwner,User
+from .models import Shop,Customer,ShopOwner,Order
 
 from .admin import UserCreationForm
 
@@ -14,8 +14,29 @@ def home(request):
     shops = Shop.objects.all()
     return render(request, 'main/home.html', {'shops': shops})
 
+
 def success(request):
     return render(request, 'main/success.html', dict())
+
+
+def update(request):
+    return render(request, 'main/update.html', dict())
+
+
+def history(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+    else:
+        orders = Order.objects.select_related().filter(customer_id=1)
+        context = {}
+        if orders is None:
+            context['order'] = ['No Order']
+            context['orderMsg'] = "You don't have any Past Order"
+        else:
+            context['orders'] = orders
+            context['orderMsg'] = "Order History"
+            print(orders)
+        return render(request, 'main/history.html', context)
 
 
 def profile(request):
@@ -31,7 +52,7 @@ def profile(request):
         else:
             owner = get_object_or_404(ShopOwner, user_id=request.user.id)
             context['balance'] = owner.credit
-        return render(request, 'main/update.html', context)
+        return render(request, 'main/profile.html', context)
 
 
 def register(request):

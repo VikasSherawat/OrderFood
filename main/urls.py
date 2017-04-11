@@ -10,5 +10,7 @@ urlpatterns = [
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^register/$', views.register, name='register'),
     url(r'^success/$', views.success, name='success'),
+    url(r'^update/$', views.update, name='update'),
+    url(r'^history/$', views.history, name='history'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
 ]
