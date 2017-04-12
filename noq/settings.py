@@ -24,7 +24,7 @@ SECRET_KEY = 'u8o87(uzdu*27!3@4mfn5kuritu=bp!#j12@7hvhh@u!agnndf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','noq.au-syd.mybluemix.net']
 
 # Application definition
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'bootstrap3',
     'crispy_forms',
 ]
@@ -79,6 +80,18 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'compose',
+#         'USER': 'admin',
+#         'PASSWORD': 'SIVGXEXXRCAXPDME',
+#         'HOST': 'sl-aus-syd-1-portal.3.dblayer.com',
+#         'PORT': '15811',
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -129,3 +142,5 @@ LOGIN_REDIRECT_URL = '../'
 
 # Crispy Forms
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+GEOIP_PATH = os.path.join(BASE_DIR, 'data')

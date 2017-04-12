@@ -7,13 +7,12 @@ staticfiles
 
 .navbar-static-top {
     margin-bottom: 0px;
-    height: 65px;
+    height: 50px;
 }
 
 .nav.navbar-nav li a {
-    color: #ccceec !important;
-    font-size: 1.5em !important;
-    font-family: serif;
+    color: white !important;
+    font-size: 1.2em !important;
 }
 
 .left-addon .glyphicon {

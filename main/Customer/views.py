@@ -1,11 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
 from django.contrib import messages
 
 # Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
-from ..models import Shop, User, Customer, FoodItem
+from django.http import HttpResponseRedirect
+from ..models import Shop, User, Customer, FoodItem,Order
 
 
 def fooditems(request, shop_id):
@@ -23,9 +23,18 @@ def buy_fooditem(request, fooditem_id):
         fooditem = get_object_or_404(FoodItem, pk=fooditem_id)
         current_user = get_object_or_404(Customer, user_id=request.user.id)
 
+        order = Order(isServed=False,customer_id=request.user.id,bill=fooditem.price)
+        order.save()
+
+        fooditem.orders.add(order)
+        fooditem.save()
+
         fooditem.shop.shop_owner.credit += fooditem.price
         fooditem.shop.shop_owner.save()
 
         current_user.balance -= fooditem.price
         current_user.save()
-        return render(request, "main/order_confirmation.html", {'fooditem': fooditem, 'user': current_user})
+        print(fooditem.shop_id)
+        context = {'fooditem': fooditem, 'user': current_user, 'shop': fooditem.shop_id}
+
+        return render(request, "main/order_confirmation.html", context)
