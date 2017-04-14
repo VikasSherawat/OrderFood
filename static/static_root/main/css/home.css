@@ -12,6 +12,30 @@ div.article-page-preview-title {
     padding-top: 17px;
 }
 
+.div-suc-row{
+    font-size: 1.5em;
+    margin-top: 80px;
+    text-align: justify;
+    padding-top: 17px;
+}
+
+.order-row{
+    box-shadow: 0px 1px 2px gray;
+    height: 75px;
+    margin: 16px 0px 0px 0px;
+    text-align: justify;
+    padding-top: 20px;
+    font-size: large;
+}
+
+.order-history-head{
+    height: 50px;
+    font-size: 2em;
+}
+.history-container{
+    margin-top: 50px;
+    align:left;
+}
 .idv-shop-row:hover {
     background : #fbfbfb;
 }
@@ -33,7 +57,8 @@ div.article-page-preview-title {
 .shop-img {
     border: 1px solid rgba(0, 0, 0, 0.11);
     border-radius: 4px;
-
+    width: 90px !important;
+    height: 90px !important;
 }
 
 .right-icon {
@@ -42,3 +67,12 @@ div.article-page-preview-title {
 .right-icon-section {
     margin: 27px 0px 0px 0px;
 }
+
+.suc-cont {
+    margin-top:130px;
+    align:center;
+    height: 230px;
+}
+
+
+

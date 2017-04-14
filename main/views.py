@@ -53,7 +53,7 @@ def order_shop(shops, customer_position):
     return order_shop(nearer_shop, customer_position) + [pivot] + order_shop(farer_shop, customer_position)
 
 
-def select_nearest_shop(request, n=5):
+def select_nearest_shop(request, n=10):
     customer_position = get_customer_position(request)
     shops = Shop.objects.all()
     shops = order_shop(shops, customer_position)
@@ -62,6 +62,12 @@ def select_nearest_shop(request, n=5):
 
 def home(request):
     shops = select_nearest_shop(request)
+    if request.method == 'POST':
+        search = request.POST.get("txt_search","noval")
+        if search == 'noval':
+            shops = select_nearest_shop(request)
+        else:
+            shops = Shop.objects.filter(cusine_type__icontains=search)
     distances = []
     customer_position = get_customer_position(request)
     for s in shops:
@@ -84,7 +90,7 @@ def history(request):
         return redirect('home')
     else:
         if not request.user.is_shop_owner:
-            orders = Order.objects.filter(customer_id=request.user.id).order_by('-id')
+            orders = Order.objects.filter(customer_id=request.user.customer.id).order_by('-id')
             context = {}
             if not orders:
                 context['ordersPresent'] = False

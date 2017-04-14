@@ -74,23 +74,23 @@ WSGI_APPLICATION = 'noq.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'compose',
-#         'USER': 'admin',
-#         'PASSWORD': 'SIVGXEXXRCAXPDME',
-#         'HOST': 'sl-aus-syd-1-portal.3.dblayer.com',
-#         'PORT': '15811',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'compose',
+        'USER': 'admin',
+        'PASSWORD': 'SIVGXEXXRCAXPDME',
+        'HOST': 'sl-aus-syd-1-portal.3.dblayer.com',
+        'PORT': '15811',
+    }
+}
 
 
 # Password validation
